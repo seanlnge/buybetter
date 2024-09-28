@@ -1,6 +1,6 @@
 import { ReceiptCacheItem } from './utils';
 import { ReadReceiptImage } from './vision';
-import { ReceiptAlternatives, ReceiptPurpose } from './chat';
+import { ReceiptAlternatives } from './chat';
 
 export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheItem) {  
     if(!receipt || !imageB64) return;
@@ -15,11 +15,11 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
     }
 
     receipt.chainProgress = 'analyzing';
-    receipt.receipt = receiptData;
+    receipt.receiptText = receiptData;
 
     const purposes = await ReceiptAlternatives(receiptData.text);
     console.log(purposes);
-    
+
     if(purposes instanceof Error) {
         receipt.status = 'error';
         receipt.errorMessage = purposes.message;

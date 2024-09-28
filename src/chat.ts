@@ -1,15 +1,10 @@
 import OpenAI from "openai";
-import { jsonParse } from "./utils";
+import { jsonParse, ReceiptPurpose } from "./utils";
 import 'dotenv/config'
 
 const openai = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY'],
 });
-
-export type ReceiptPurpose = {
-    purpose: string,
-    alternatives: string[]
-};
 
 export async function ReceiptAlternatives(receiptText: string): Promise<Error | ReceiptPurpose[]> {
     const model = 'gpt-4o';

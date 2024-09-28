@@ -2,12 +2,18 @@ export type ReceiptText = {
     text: string
 };
 
+export type ReceiptPurpose = {
+    purpose: string,
+    alternatives: string[]
+};
+
 export type ReceiptCacheItem = {
     birthTime: number,
     status: 'success' | 'error' | 'pending',
-    errorMessage: null | string,
+    errorMessage: string | null,
     chainProgress: 'reading' | 'analyzing' | 'searching' | 'complete',
-    receipt: ReceiptText | null
+    receiptText: ReceiptText | null,
+    purposes: ReceiptPurpose[] | null
 };
 
 /**

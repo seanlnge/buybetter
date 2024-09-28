@@ -21,13 +21,10 @@ function ReadReceiptImage(imageB64) {
                     "image": { "content": imageB64 },
                     "features": [{ "type": "DOCUMENT_TEXT_DETECTION" }]
                 }] };
-        const endpoint = `https://vision.googleapis.com/v1/images:annotate?key=${process.env.GOOGLE_API_KEY}`;
+        const endpoint = `https://vision.googleapis.com/v1/images:annotate`;
         const response = yield axios_1.default.post(endpoint, body, {
-            headers: {
-                //'Authorization': `Bearer ${process.env.GOOGLE_ACCESS_TOKEN}`,
-                'x-goog-user-project': process.env.GOOGLE_PROJECT_ID,
-                'Content-Type': 'application/json; charset=utf-8'
-            },
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            params: { 'key': process.env.GOOGLE_API_KEY }
         }).catch(err => err);
         if (response.data && response.data.responses[0].textAnnotations) {
             const detectedText = response.data.responses[0].textAnnotations[0].description;
@@ -36,7 +33,7 @@ function ReadReceiptImage(imageB64) {
                 text: detectedText
             };
         }
-        console.log(response);
+        console.log(response.response.data.error);
         return new Error("response not received");
     });
 }

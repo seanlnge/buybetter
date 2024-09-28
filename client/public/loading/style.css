@@ -1,10 +1,21 @@
-.loading-screen, .error-screen {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Black background */
+    color: white; /* Default text color */
+}
+
+/* Loading and Error Styles */
+.loading-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */
-    background-color: black; /* Black background */
+    background-color: black; /* Black background for loading screen */
     color: white; /* White text for contrast */
 }
 

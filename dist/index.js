@@ -24,7 +24,8 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
         status: 'pending',
         errorMessage: null,
         chainProgress: 'reading',
-        receipt: null
+        receiptText: null,
+        purposes: null,
     };
     ReceiptCache.set(id, receipt);
     res.send({ id });

@@ -24,7 +24,7 @@ function RunReceiptChain(imageB64, receipt) {
             return;
         }
         receipt.chainProgress = 'analyzing';
-        receipt.receipt = receiptData;
+        receipt.receiptText = receiptData;
         const purposes = yield (0, chat_1.ReceiptAlternatives)(receiptData.text);
         console.log(purposes);
         if (purposes instanceof Error) {
