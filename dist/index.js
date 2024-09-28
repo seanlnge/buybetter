@@ -17,7 +17,7 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
         return;
     let id;
     do {
-        id = Math.floor(Math.random() * Math.pow(36, 10) + Math.pow(36, 9)).toString(36);
+        id = Math.floor(Math.random() * 9 * Math.pow(36, 9) + Math.pow(36, 9)).toString(36);
     } while (ReceiptCache.has(id));
     const receipt = {
         birthTime: Date.now(),
@@ -31,17 +31,15 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
     (0, chain_1.RunReceiptChain)(req.file.buffer.toString('base64'), receipt);
 });
 app.get('/retrieve-receipt/:id', (req, res) => {
-    const id = req.query.id;
+    const id = req.params.id;
     if (typeof id !== 'string')
         return;
-    if (id.length !== 9)
+    if (id.length !== 10)
         return;
     if (!ReceiptCache.has(id)) {
         res.send({ status: 'error', message: 'id not found in receipt cache' });
         return;
     }
-    console.log("ID: " + id + " requested retrieval. Sending " + JSON.stringify(ReceiptCache.get(id)));
     res.send(ReceiptCache.get(id));
-    ReceiptCache.delete(id);
 });
 app.listen(3000, () => console.log('server started'));

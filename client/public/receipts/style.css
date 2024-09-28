@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Black background */
+    color: white; /* Default text color */
+}
+
+header {
+    background-color: #003366; /* Dark blue */
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack items vertically */
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 24px; /* Logo size */
+    margin-bottom: 10px; /* Space below the logo */
+}
+
+h1 {
+    margin: 0; /* Remove default margin */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%; /* Full width */
+    max-width: 800px;
+    margin: 0 auto; /* Center the main content */
+}
+
+.hero-section {
+    display: flex;
+    justify-content: center; /* Center contents */
+    align-items: center; /* Align items vertically */
+    flex-direction: row; /* Row layout */
+    margin: 20px 0; /* Space around hero section */
+}
+
+.hero-image {
+    max-width: 50%; /* Adjust image size */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between image and button */
+}
+
+.cta-button {
+    background-color: #4CAF50; /* Money-colored green */
+    color: white;
+    border: none;
+    padding: 15px 35px; /* Increased padding */
+    border-radius: 30px; /* Round button */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Hover effect */
+    font-size: 20px; /* Larger font size */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.cta-button:hover {
+    background-color: #3e8e41; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly grow the button on hover */
+}
+
+.upload-section, .preview-section, .results-section {
+    margin: 20px 0;
+    width: 100%;
+    background-color: #222; /* Dark background for sections */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.upload-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    display: none; /* Hide default file input */
+}
+
+.styled-file {
+    appearance: none; /* Remove default styling */
+    background-color: #4CAF50; /* Match with analyze button */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px; /* Round button */
+    cursor: pointer;
+    font-size: 16px; /* Increase font size */
+    margin-bottom: 10px; /* Space below file input */
+}
+
+.styled-file:hover {
+    background-color: #3e8e41; /* Darker green on hover */
+}
+
+#receipt-upload {
+    margin: 10px 0;
+}
+
+/* Button styles */
+#analyze-btn {
+    background-color: #4CAF50; /* Money-colored green */
+    color: white;
+    border: none;
+    padding: 12px 25px; /* Padding for a bubble effect */
+    border-radius: 30px; /* Round button */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Hover effect */
+    font-size: 16px; /* Increase font size */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+#analyze-btn:hover {
+    background-color: #3e8e41; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly grow the button on hover */
+}
+
+#preview-container {
+    display: none;
+}
+
+#receipt-preview {
+    max-width: 100%;
+    max-height: 400px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: #003366; /* Dark blue */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: relative; /* Changed to relative */
+    bottom: 0;
+}
+
+/* Loading and Error Styles */
+.loading-screen, .error-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: black; /* Black background for loading screen */
+    color: white; /* White text for contrast */
+}
+
+.loading-gif {
+    width: 100px; /* Adjust size of loading gif */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between gif and text */
+}
+
+.error-screen {
+    text-align: center;
+}

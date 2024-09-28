@@ -14,15 +14,17 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
         return;
     }
 
-    receipt.status = 'success';
     receipt.chainProgress = 'analyzing';
     receipt.receipt = receiptData;
 
     const purposes = await ReceiptAlternatives(receiptData.text);
     console.log(purposes);
+    
     if(purposes instanceof Error) {
         receipt.status = 'error';
         receipt.errorMessage = purposes.message;
         return;
     }
+
+    receipt.chainProgress = 'searching';
 }

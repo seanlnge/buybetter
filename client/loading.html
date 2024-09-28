@@ -4,50 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading - BuyBetter</title>
-    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="public/loading/style.css">
 </head>
 <body>
-    <div class="loading-screen">
-        <img src="public/loading.gif" alt="Loading..." class="loading-gif">
+    <div class="loading-screen"></div>
         <h2>Saving money as we speak...</h2>
+        <img src="public/loading/loading.gif" alt="Loading..." class="loading-gif">
+        <p id="progressText"></p>
     </div>
     
-    <script>
-        // Simulate loading time
-        setTimeout(() => {
-            // After 5 seconds, display error message and redirect
-            document.body.innerHTML = `
-                <div class="error-screen">
-                    <h2>Sorry, we can't do this right now. Please try again later.</h2>
-                </div>
-            `;
-            // Redirect after showing the message
-            setTimeout(() => {
-                window.location.href = 'index.html'; // Redirect to home page
-            }, 3000); // Wait 3 seconds before redirecting
-        }, 5000); // Show loading screen for 5 seconds
-    </script>
-    
-    <style>
-        .loading-screen, .error-screen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-            background-color: black; /* Black background */
-            color: white; /* White text for contrast */
-        }
-
-        .loading-gif {
-            width: 100px; /* Adjust size of loading gif */
-            height: auto; /* Maintain aspect ratio */
-            margin-bottom: 20px; /* Space between gif and text */
-        }
-
-        .error-screen {
-            text-align: center;
-        }
-    </style>
+    <script src="public/loading/script.js"></script>
 </body>
 </html>

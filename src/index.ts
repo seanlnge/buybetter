@@ -3,7 +3,7 @@ import multer from 'multer';
 import 'dotenv/config'
 
 import { RunReceiptChain } from './chain';
-import { ReceiptCacheItem, toImageB64 } from './utils';
+import { ReceiptCacheItem } from './utils';
 
 const app = express();
 app.use(express.static('client'));
@@ -16,7 +16,7 @@ const ReceiptCache: Map<string, ReceiptCacheItem> = new Map();
 app.post('/upload-receipt', upload.single('image'), (req, res) => {
     if(!req.file) return;
 
-    let id; do { id = Math.floor(Math.random() * 36**10 + 36**9).toString(36) } while(ReceiptCache.has(id));
+    let id; do { id = Math.floor(Math.random() * 9 * 36**9 + 36**9).toString(36) } while(ReceiptCache.has(id));
 
     const receipt: ReceiptCacheItem = {
         birthTime: Date.now(),
@@ -32,18 +32,16 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
 });
 
 app.get('/retrieve-receipt/:id', (req, res) => {
-    const id = req.query.id;
+    const id = req.params.id;
     if(typeof id !== 'string') return;
-    if(id.length !== 9) return;
+    if(id.length !== 10) return;
 
     if(!ReceiptCache.has(id)) {
         res.send({ status: 'error', message: 'id not found in receipt cache' });
         return;
     }
 
-    console.log("ID: " + id + " requested retrieval. Sending " + JSON.stringify(ReceiptCache.get(id)));
     res.send(ReceiptCache.get(id));
-    ReceiptCache.delete(id);
 });
 
 app.listen(3000, () => console.log('server started'));

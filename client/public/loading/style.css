@@ -1,0 +1,19 @@
+.loading-screen, .error-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: black; /* Black background */
+    color: white; /* White text for contrast */
+}
+
+.loading-gif {
+    width: 100px; /* Adjust size of loading gif */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space between gif and text */
+}
+
+.error-screen {
+    text-align: center;
+}

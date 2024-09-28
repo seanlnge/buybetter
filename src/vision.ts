@@ -8,7 +8,7 @@ export async function ReadReceiptImage(imageB64: string): Promise<Error | Receip
         "features": [{ "type": "DOCUMENT_TEXT_DETECTION" }]
     }]};
 
-    const endpoint = `https://vision.googleapis.com/v1/images:annotate`;
+    const endpoint = `https://vision.googleapis.com/v1/images:annotate?key=${process.env.GOOGLE_API_KEY}`;
 
     const response = await axios.post(endpoint, body, { 
         headers: {

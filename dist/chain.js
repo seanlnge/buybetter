@@ -23,7 +23,6 @@ function RunReceiptChain(imageB64, receipt) {
             receipt.errorMessage = receiptData.message;
             return;
         }
-        receipt.status = 'success';
         receipt.chainProgress = 'analyzing';
         receipt.receipt = receiptData;
         const purposes = yield (0, chat_1.ReceiptAlternatives)(receiptData.text);
@@ -33,5 +32,6 @@ function RunReceiptChain(imageB64, receipt) {
             receipt.errorMessage = purposes.message;
             return;
         }
+        receipt.chainProgress = 'searching';
     });
 }
