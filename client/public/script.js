@@ -14,5 +14,24 @@ function handleFileUpload(event) {
     }
 }
 
+// Analyze receipt function with loading screen
+function analyzeReceipt() {
+    // Show loading screen
+    document.body.innerHTML = `
+        <div class="loading-screen">
+            <img src="public/loading.gif" alt="Loading" class="loading-gif">
+            <p>Saving money as we speak...</p>
+        </div>
+    `;
 
-fetch('/word').then(res => res.json()).then(data => alert(data.value));
+    // Simulate AI processing time
+    setTimeout(() => {
+        // After 5 seconds, show error message
+        document.body.innerHTML = `
+            <div class="error-screen">
+                <h2>Sorry, we can't do this right now, please try again later.</h2>
+                <button onclick="window.location.href='index.html'" class="cta-button">Go Home</button>
+            </div>
+        `;
+    }, 5000);
+}
