@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ReceiptText } from './utils';
-require('dotenv')();
+import 'dotenv/config'
 
 export async function ReadReceiptImage(imageB64: string): Promise<Error | ReceiptText> {
     const body = { "requests": [{

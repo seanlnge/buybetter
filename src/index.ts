@@ -1,5 +1,5 @@
-import * as express from 'express';
-require('dotenv')();
+import express from 'express';
+import 'dotenv/config'
 
 import { RunReceiptChain } from './chain';
 import { ReceiptCacheItem } from './utils';

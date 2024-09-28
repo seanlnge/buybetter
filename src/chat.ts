@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import { jsonParse } from "./utils";
-require('dotenv')();
+import 'dotenv/config'
 
 const openai = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY'],
