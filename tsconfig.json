@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "lib": [
+        "es6"
+        ],
+        "alwaysStrict": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "outDir": "dist"
+    },
+    "files": [
+        "src/index.ts"
+    ]
+}
