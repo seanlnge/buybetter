@@ -1,16 +1,20 @@
 import express from 'express';
+import multer from 'multer';
 import 'dotenv/config'
 
 import { RunReceiptChain } from './chain';
-import { ReceiptCacheItem } from './utils';
+import { ReceiptCacheItem, toImageB64 } from './utils';
 
 const app = express();
 app.use(express.static('client'));
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 const ReceiptCache: Map<string, ReceiptCacheItem> = new Map();
 
-app.post('/upload-receipt', (req, res) => {
-    if(!req.body.receiptImage) return;
+app.post('/upload-receipt', upload.single('image'), (req, res) => {
+    if(!req.file) return;
 
     let id; do { id = Math.floor(Math.random() * 36**10 + 36**9).toString(36) } while(ReceiptCache.has(id));
 
@@ -24,7 +28,7 @@ app.post('/upload-receipt', (req, res) => {
 
     ReceiptCache.set(id, receipt);
     res.send({ id });
-    RunReceiptChain(req.body.receiptImage, receipt);
+    RunReceiptChain(req.file.buffer.toString('base64'), receipt);
 });
 
 app.get('/retrieve-receipt/:id', (req, res) => {
@@ -37,6 +41,7 @@ app.get('/retrieve-receipt/:id', (req, res) => {
         return;
     }
 
+    console.log("ID: " + id + " requested retrieval. Sending " + JSON.stringify(ReceiptCache.get(id)));
     res.send(ReceiptCache.get(id));
     ReceiptCache.delete(id);
 });

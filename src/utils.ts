@@ -32,3 +32,7 @@ export function jsonParse(str: string) {
 
     return null;
 }
+
+export function toImageB64(buffer: Buffer, mimetype: string): string {
+    return `data:${mimetype};base64,${buffer.toString('base64')}`;
+}

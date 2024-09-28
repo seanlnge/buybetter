@@ -17,6 +17,7 @@ function RunReceiptChain(imageB64, receipt) {
         if (!receipt || !imageB64)
             return;
         const receiptData = yield (0, vision_1.ReadReceiptImage)(imageB64);
+        console.log(receiptData);
         if (receiptData instanceof Error) {
             receipt.status = 'error';
             receipt.errorMessage = receiptData.message;
@@ -26,11 +27,11 @@ function RunReceiptChain(imageB64, receipt) {
         receipt.chainProgress = 'analyzing';
         receipt.receipt = receiptData;
         const purposes = yield (0, chat_1.ReceiptAlternatives)(receiptData.text);
+        console.log(purposes);
         if (purposes instanceof Error) {
             receipt.status = 'error';
             receipt.errorMessage = purposes.message;
             return;
         }
-        console.log(purposes);
     });
 }

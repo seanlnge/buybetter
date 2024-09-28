@@ -6,6 +6,7 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
     if(!receipt || !imageB64) return;
 
     const receiptData = await ReadReceiptImage(imageB64);
+    console.log(receiptData);
 
     if(receiptData instanceof Error) {
         receipt.status = 'error';
@@ -18,11 +19,10 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
     receipt.receipt = receiptData;
 
     const purposes = await ReceiptAlternatives(receiptData.text);
+    console.log(purposes);
     if(purposes instanceof Error) {
         receipt.status = 'error';
         receipt.errorMessage = purposes.message;
         return;
     }
-
-    console.log(purposes);
 }
