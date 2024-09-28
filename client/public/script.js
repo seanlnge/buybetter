@@ -14,19 +14,5 @@ function handleFileUpload(event) {
     }
 }
 
-// Placeholder function for analyzing the receipt
-function analyzeReceipt() {
-    const resultsContainer = document.getElementById('results-container');
-    const resultsText = document.getElementById('results-text');
 
-    // Simulate analyzing receipt and finding alternatives
-    setTimeout(() => {
-        resultsText.innerHTML = `
-            <ul>
-                <li><strong>Item 1:</strong> Suggested alternative: 20% cheaper</li>
-                <li><strong>Item 2:</strong> Similar quality, 15% savings</li>
-                <li><strong>Item 3:</strong> Recommended for better quality at the same price</li>
-            </ul>
-        `;
-    }, 2000); // Simulate a delay for receipt analysis
-}
+fetch('/word').then(res => res.json()).then(data => alert(data.value));
