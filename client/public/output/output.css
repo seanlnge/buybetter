@@ -1,0 +1,67 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Black background */
+    color: white; /* Default text color */
+}
+
+header {
+    background-color: #003366; /* Dark blue */
+    color: white;
+    padding: 20px;
+    text-align: center; /* Center text */
+}
+
+h1 {
+    margin: 0; /* Remove default margin */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%; /* Full width */
+    max-width: 800px;
+    margin: 0 auto; /* Center the main content */
+}
+
+.analysis-section {
+    background-color: #222; /* Dark background for sections */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+}
+
+.analysis-output p, .alternatives p {
+    margin: 10px 0; /* Space between paragraphs */
+}
+
+#item-select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #003366; /* Dark blue for dropdown */
+    color: white; /* White text */
+}
+
+.address-inputs input {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    margin: 10px 0; /* Space between inputs */
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #222; /* Dark background */
+    color: white; /* White text */
+}
+
+footer {
+    background-color: #003366; /* Dark blue */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
