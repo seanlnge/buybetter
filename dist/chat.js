@@ -25,7 +25,7 @@ function ReceiptAlternatives(receiptText) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a, _b, _c, _d;
         const prefix = 'Here is a receipt for my recent purchase';
-        const suffix = 'First, describe the purpose/purposes of my purchase, then give up to 3 alternative ways that I could complete these purpose(s) in a cheaper method, such as DIY, shopping in bulk, or shopping with cheaper means.';
+        const suffix = 'First, describe the purpose/purposes of my purchase in 1 to 2 sentences, then give up to 3 alternative ways that I could complete these purpose(s) in a cheaper method, such as DIY, shopping in bulk, or shopping with cheaper means.';
         const schema = 'Respond to this in JSON according to the following schema: <json>{\n"receipt": { "purpose": string, "alternatives": string[] }[] }</json>\nIf there is only one main purpose, the purposes array should only be 1 element.';
         const text = prefix + '\n<receipt>\n' + receiptText + '\n</recipt>\n' + suffix + '\n' + schema;
         const modelChatHistory = [{ role: 'user', content: [{ type: "text", text }] }];

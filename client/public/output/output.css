@@ -65,3 +65,64 @@ footer {
     padding: 10px;
     width: 100%;
 }
+.alternatives {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.altnav {
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+.altnav button {
+    font-size: 2.25em;
+    background: none;
+    border: none;
+    color: #c1fffc;
+}
+.altnav button:hover { 
+    cursor: pointer;
+    transition-duration: 0.3s;
+    color: #509d99;
+}
+.alternatives > .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Maintain responsive sizing */
+    max-width: 600px; /* Adjust to limit the grid to two items per row */
+    gap: 20px; /* Space between items */
+    justify-content: center;
+    padding: 20px;
+    width: 100%; /* Ensures full width usage */
+    margin: 0 auto; /* Centers the grid container */
+}
+
+.alternatives > .items > * {
+    background: #438865;
+    border: 2px solid #222;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.altelem {
+    border-radius: 12px;
+    border: none;
+    width: 100%;
+    height: 250px;
+}
+.map {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+.alteleminner {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.alteleminner > button {
+    border-radius: 8px;
+}

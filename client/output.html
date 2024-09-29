@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt Analysis - BuyBetter</title>
+    <link rel="stylesheet" href="public/global.css">
     <link rel="stylesheet" href="public/output/output.css">
 </head>
 <body>
@@ -14,36 +15,20 @@
 
     <main>
         <div class="analysis-section">
-            <h2>AI Analysis Results</h2>
-            <div class="analysis-output">
-                <p><strong>Status:</strong> <span id="status">Pending...</span></p>
-                <p><strong>Error Message:</strong> <span id="error-message">N/A</span></p>
-                <p><strong>Chain Progress:</strong> <span id="chain-progress">Pending...</span></p>
-                <p><strong>Receipt Text:</strong> <span id="receipt-text">N/A</span></p>
-            </div>
-
-            <h3>Alternatives</h3>
-            <div class="alternatives">
-                <p>1. <span id="alt1">[Alternative 1]</span></p>
-                <p>2. <span id="alt2">[Alternative 2]</span></p>
-                <p>3. <span id="alt3">[Alternative 3]</span></p>
-            </div>
-
-            <h3>Select an Item</h3>
-            <select id="item-select">
-                <option value="1">1 - Amazon Item 1</option>
-                <option value="2">2 - Amazon Item 2</option>
-                <option value="3">3 - Amazon Item 3</option>
-                <option value="4">4 - Walmart Item 1</option>
-                <option value="5">5 - Walmart Item 2</option>
-                <option value="6">6 - Walmart Item 3</option>
-            </select>
-
-            <h3>Google Maps Addresses</h3>
-            <div class="address-inputs">
-                <input type="text" placeholder="Enter address 1">
-                <input type="text" placeholder="Enter address 2">
-                <input type="text" placeholder="Enter address 3">
+            <div class="chunk">
+                <div class="purpose">
+                    <h1>Your Receipt</h1>
+                    <p></p>
+                </div>
+                <div class="alternatives">
+                    <div class="altnav">
+                        <button class="leftbutton" onclick="altIndex(-1)">&lt;</button>
+                        <h2>Alternatives</h2>
+                        <button class="rightbutton" onclick="altIndex(1)">&gt;</button>
+                    </div>
+                    <p class="altdesc"></p>
+                    <div class="items"></div>
+                </div>
             </div>
         </div>
     </main>

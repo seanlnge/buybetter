@@ -7,7 +7,9 @@ export type Alternative = {
     links?: {
         type: 'google' | 'amazon' | 'maps',
         query: string,
-        link?: string
+        link?: string,
+        title?: string,
+        description?: string,
     }[],
 
 }

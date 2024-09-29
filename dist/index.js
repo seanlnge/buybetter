@@ -9,6 +9,7 @@ require("dotenv/config");
 const chain_1 = require("./chain");
 const app = (0, express_1.default)();
 app.use(express_1.default.static('client'));
+app.set('trust proxy', true);
 const storage = multer_1.default.memoryStorage();
 const upload = (0, multer_1.default)({ storage });
 const ReceiptCache = new Map();
@@ -30,7 +31,8 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
     };
     ReceiptCache.set(id, receipt);
     res.send({ id });
-    (0, chain_1.RunReceiptChain)(req.file.buffer.toString('base64'), receipt, (_a = req.socket.remoteAddress) !== null && _a !== void 0 ? _a : '127.0.0.1');
+    const ip = req.ip == "::1" ? "131.94.186.13" : (_a = req.ip) !== null && _a !== void 0 ? _a : "127.0.0.1";
+    (0, chain_1.RunReceiptChain)(req.file.buffer.toString('base64'), receipt, ip);
 });
 app.get('/retrieve-receipt/:id', (req, res) => {
     const id = req.params.id;

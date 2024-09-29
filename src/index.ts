@@ -7,6 +7,7 @@ import { ReceiptCacheItem } from './utils';
 
 const app = express();
 app.use(express.static('client'));
+app.set('trust proxy', true);
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -29,7 +30,8 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
 
     ReceiptCache.set(id, receipt);
     res.send({ id });
-    RunReceiptChain(req.file.buffer.toString('base64'), receipt, req.socket.remoteAddress ?? '127.0.0.1');
+    const ip = req.ip == "::1" ? "131.94.186.13" : req.ip ?? "127.0.0.1";
+    RunReceiptChain(req.file.buffer.toString('base64'), receipt, ip);
 });
 
 app.get('/retrieve-receipt/:id', (req, res) => {

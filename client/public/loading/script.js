@@ -27,6 +27,11 @@ async function pingRetrievalEndpoint(id) {
     }
     
     window.localStorage.setItem("receipt" + id, JSON.stringify(receipt));
+
+    const receiptIds = JSON.parse(window.localStorage.getItem("receiptIds") ?? JSON.stringify({ ids: [] }));
+    receiptIds.ids.push(id);
+    window.localStorage.setItem("receiptIds", JSON.stringify(receiptIds));
+
     window.location.href = "/output.html";
 }
 

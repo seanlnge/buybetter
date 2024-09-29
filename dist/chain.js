@@ -18,7 +18,6 @@ function RunReceiptChain(imageB64, receipt, ip) {
         if (!receipt || !imageB64)
             return;
         const receiptData = yield (0, vision_1.ReadReceiptImage)(imageB64);
-        console.log(receiptData);
         if (receiptData instanceof Error) {
             receipt.status = 'error';
             receipt.errorMessage = receiptData.message;
@@ -27,7 +26,6 @@ function RunReceiptChain(imageB64, receipt, ip) {
         receipt.chainProgress = 'analyzing';
         receipt.receiptText = receiptData;
         const purposes = yield (0, chat_1.ReceiptAlternatives)(receiptData.text);
-        console.log(purposes);
         if (purposes instanceof Error) {
             receipt.status = 'error';
             receipt.errorMessage = purposes.message;
@@ -37,16 +35,25 @@ function RunReceiptChain(imageB64, receipt, ip) {
         receipt.purposes = purposes.purposes;
         receipt.chainProgress = 'searching';
         yield (0, chat_1.FindCheaper)(receipt, chatHistory);
-        console.log(receipt.purposes);
         const promiseList = [];
         for (const purpose of receipt.purposes) {
             for (const alternative of purpose.alternatives) {
                 for (const link of alternative.links) {
                     if (link.type == 'google') {
-                        promiseList.push((() => __awaiter(this, void 0, void 0, function* () { return link.link = yield (0, query_1.GetGoogleQuery)(link.query); }))());
+                        promiseList.push((() => __awaiter(this, void 0, void 0, function* () {
+                            const data = yield (0, query_1.GetGoogleQuery)(link.query);
+                            link.link = data.link;
+                            link.title = data.title;
+                            link.description = data.description;
+                        }))());
                     }
                     else if (link.type == 'amazon') {
-                        promiseList.push((() => __awaiter(this, void 0, void 0, function* () { return link.link = yield (0, query_1.GetAmazonQuery)(link.query); }))());
+                        promiseList.push((() => __awaiter(this, void 0, void 0, function* () {
+                            const data = yield (0, query_1.GetAmazonQuery)(link.query);
+                            link.link = data.link;
+                            link.title = data.title;
+                            link.description = data.description;
+                        }))());
                     }
                     else if (link.type == 'maps') {
                         promiseList.push((() => __awaiter(this, void 0, void 0, function* () { return link.link = yield (0, query_1.GetMapsQuery)(link.query, ip); }))());
@@ -55,7 +62,6 @@ function RunReceiptChain(imageB64, receipt, ip) {
             }
         }
         yield Promise.all(promiseList);
-        console.log(promiseList);
         receipt.chainProgress = 'complete';
         receipt.status = 'success';
     });

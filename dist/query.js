@@ -8,25 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetGoogleQuery = GetGoogleQuery;
 exports.GetAmazonQuery = GetAmazonQuery;
 exports.GetMapsQuery = GetMapsQuery;
-const googlethis_1 = __importDefault(require("googlethis"));
+const google_sr_1 = require("google-sr");
 const google_maps_services_js_1 = require("@googlemaps/google-maps-services-js");
 const querystring_1 = require("querystring");
+require("dotenv/config");
 // @ts-ignore
 const ipapi_tools_1 = require("ipapi-tools");
 const client = new google_maps_services_js_1.Client({});
 function GetGoogleQuery(query) {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b;
-        const response = yield googlethis_1.default.search(query, { page: 1 });
-        console.log('g', response);
-        return (_b = (_a = response === null || response === void 0 ? void 0 : response.results[0]) === null || _a === void 0 ? void 0 : _a.url) !== null && _b !== void 0 ? _b : 'https://google.com/search?q=' + (0, querystring_1.escape)(query);
+        var _a, _b, _c;
+        const response = yield (0, google_sr_1.search)({ query });
+        const link = (_a = response[0].link) !== null && _a !== void 0 ? _a : 'https://google.com/search?q=' + (0, querystring_1.escape)(query);
+        const title = (_b = response[0].title) !== null && _b !== void 0 ? _b : 'Google';
+        const description = (_c = response[0].description) !== null && _c !== void 0 ? _c : 'Google search for: ' + query;
+        return { link, title, description };
     });
 }
 function GetAmazonQuery(query) {
@@ -37,17 +37,16 @@ function GetAmazonQuery(query) {
 function GetMapsQuery(query, ip) {
     return __awaiter(this, void 0, void 0, function* () {
         const { lat, lon } = yield (0, ipapi_tools_1.getIpLocation)(ip);
-        console.log(lat, lon, ip);
         const response = yield client.placesNearby({
             params: {
                 location: `${lat},${lon}`,
                 keyword: query,
+                radius: 20000,
                 key: process.env.GOOGLE_MAPS_API_KEY,
             },
         }).catch(err => err);
-        console.log('m', lat, lon);
         if (response instanceof Error)
-            return 'sad';
+            return (yield GetGoogleQuery("google maps " + query + " near me")).link;
         return response.data.results[0].vicinity;
     });
 }

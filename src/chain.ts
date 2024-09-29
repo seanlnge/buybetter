@@ -7,7 +7,6 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
     if(!receipt || !imageB64) return;
 
     const receiptData = await ReadReceiptImage(imageB64);
-    console.log(receiptData);
 
     if(receiptData instanceof Error) {
         receipt.status = 'error';
@@ -19,7 +18,6 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
     receipt.receiptText = receiptData;
 
     const purposes = await ReceiptAlternatives(receiptData.text);
-    console.log(purposes);
 
     if(purposes instanceof Error) {
         receipt.status = 'error';
@@ -32,16 +30,25 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
     receipt.chainProgress = 'searching';
 
     await FindCheaper(receipt, chatHistory);
-    console.log(receipt.purposes);
 
     const promiseList = [];
     for(const purpose of receipt.purposes) {
         for(const alternative of purpose.alternatives) {
             for(const link of alternative.links!) {
                 if(link.type == 'google') {
-                    promiseList.push((async () => link.link = await GetGoogleQuery(link.query))());
+                    promiseList.push((async () => {
+                        const data = await GetGoogleQuery(link.query);
+                        link.link = data.link;
+                        link.title = data.title;
+                        link.description = data.description;
+                    })());
                 } else if(link.type == 'amazon') {
-                    promiseList.push((async () => link.link = await GetAmazonQuery(link.query))());
+                    promiseList.push((async () => {
+                        const data = await GetAmazonQuery(link.query);
+                        link.link = data.link;
+                        link.title = data.title;
+                        link.description = data.description;
+                    })());
                 } else if(link.type == 'maps') {
                     promiseList.push((async () => link.link = await GetMapsQuery(link.query, ip))());
                 }
@@ -49,7 +56,6 @@ export async function RunReceiptChain(imageB64: string, receipt: ReceiptCacheIte
         }
     }
     await Promise.all(promiseList);
-    console.log(promiseList);
 
     receipt.chainProgress = 'complete';
     receipt.status = 'success';

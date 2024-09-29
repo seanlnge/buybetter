@@ -34,6 +34,7 @@
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "google-sr": "^4.0.0",
     "googlethis": "^1.8.0",
     "ip-location-api": "^2.1.1",
     "ipapi-tools": "^1.0.4",
