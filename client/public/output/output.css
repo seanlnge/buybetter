@@ -10,6 +10,7 @@ header {
     background-color: #003366; /* Dark blue */
     color: white;
     padding: 20px;
+    padding-top: 110px;
     text-align: center; /* Center text */
 }
 
@@ -125,4 +126,18 @@ footer {
 }
 .alteleminner > button {
     border-radius: 8px;
+}
+
+.check-out-button {
+    background-color: #4caf50; /* Money green */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding for the button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.check-out-button:hover {
+    background-color: #45a049; /* Darker green on hover */
 }

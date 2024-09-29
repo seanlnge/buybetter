@@ -60,8 +60,13 @@ function loadData() {
             p.textContent = item.description.slice(0, 120);
 
             const button = document.createElement('button');
-            button.textContent = 'Check it out >';
-            button.onclick = () => window.open(item.link, '_blank').focus();
+            // button.textContent = 'Check it out >';
+            // button.onclick = () => window.open(item.link, '_blank').focus();
+            // const button = document.createElement('button');
+button.textContent = 'Check it out >';
+button.classList.add('check-out-button'); // Add the class here
+button.onclick = () => window.open(item.link, '_blank').focus();
+
 
             div2.appendChild(h3);
             div2.appendChild(p);

@@ -20,7 +20,7 @@ body {
 }
 
 .loading-gif {
-    width: 100px; /* Adjust size of loading gif */
+    width: 200px; /* Adjust size of loading gif */
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 20px; /* Space between gif and text */
 }
