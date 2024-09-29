@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="public/output/output.css">
 </head>
 <body>
+    <canvas id="canvas"></canvas>
     <nav class="navigation">
         <a href="/"><img src="public/media/buybetter.ico" alt="logo" /></a>
         <div>
-            <button onclick="location.href='/receipts.html'">View All</button>
+            <button onclick="location.href='/receipts.html#results-container'">View All</button>
             <button class="newreceipt" onclick="location.href='/receipts.html'">New Receipt</button>
         </div>
     </nav>
@@ -27,6 +28,7 @@
                     <h1>Your Receipt</h1>
                     <p></p>
                 </div>
+                <hr>
                 <div class="alternatives">
                     <div class="altnav">
                         <button class="leftbutton" onclick="altIndex(-1)">&lt;</button>
@@ -44,6 +46,7 @@
         <p>&copy; 2024 BuyBetter - Empowering smarter financial decisions</p>
     </footer>
 
+    <script src="public/renderspice.js"></script> <!-- framework i made in 8th grade !!! -->
     <script src="public/output/script.js"></script>
 </body>
 </html>

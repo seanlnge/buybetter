@@ -10,10 +10,13 @@ const client = new Client({});
 
 export async function GetGoogleQuery(query: string): Promise<Record<string, string>> {
     const response = await search({ query });
-    const link = response[0].link ?? 'https://google.com/search?q=' + escape(query);
-    const title = response[0].title ?? 'Google';
-    const description = response[0].description ?? 'Google search for: ' + query;
-    return { link, title, description };
+    const resp = response.find(x => !x.link?.includes('google.com/maps'))!;
+
+    return {
+        link: resp.link || 'https://google.com/search?q=' + escape(query),
+        title: resp.title || query,
+        description: resp.description || 'Google search for: ' + query
+    }
 }
 
 export async function GetAmazonQuery(query: string): Promise<Record<string, string>> {
