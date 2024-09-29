@@ -13,6 +13,7 @@ const storage = multer_1.default.memoryStorage();
 const upload = (0, multer_1.default)({ storage });
 const ReceiptCache = new Map();
 app.post('/upload-receipt', upload.single('image'), (req, res) => {
+    var _a;
     if (!req.file)
         return;
     let id;
@@ -25,11 +26,11 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
         errorMessage: null,
         chainProgress: 'reading',
         receiptText: null,
-        purposes: null,
+        purposes: null
     };
     ReceiptCache.set(id, receipt);
     res.send({ id });
-    (0, chain_1.RunReceiptChain)(req.file.buffer.toString('base64'), receipt);
+    (0, chain_1.RunReceiptChain)(req.file.buffer.toString('base64'), receipt, (_a = req.socket.remoteAddress) !== null && _a !== void 0 ? _a : '127.0.0.1');
 });
 app.get('/retrieve-receipt/:id', (req, res) => {
     const id = req.params.id;

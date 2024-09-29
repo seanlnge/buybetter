@@ -2,9 +2,18 @@ export type ReceiptText = {
     text: string
 };
 
+export type Alternative = {
+    description: string,
+    links?: {
+        type: 'google' | 'amazon' | 'maps',
+        query: string,
+        link?: string
+    }[],
+
+}
 export type ReceiptPurpose = {
     purpose: string,
-    alternatives: string[]
+    alternatives: Alternative[]
 };
 
 export type ReceiptCacheItem = {

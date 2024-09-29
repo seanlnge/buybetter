@@ -24,12 +24,12 @@ app.post('/upload-receipt', upload.single('image'), (req, res) => {
         errorMessage: null,
         chainProgress: 'reading',
         receiptText: null,
-        purposes: null,
+        purposes: null
     };
 
     ReceiptCache.set(id, receipt);
     res.send({ id });
-    RunReceiptChain(req.file.buffer.toString('base64'), receipt);
+    RunReceiptChain(req.file.buffer.toString('base64'), receipt, req.socket.remoteAddress ?? '127.0.0.1');
 });
 
 app.get('/retrieve-receipt/:id', (req, res) => {

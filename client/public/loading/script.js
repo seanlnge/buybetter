@@ -7,7 +7,7 @@ async function pingRetrievalEndpoint(id) {
     let errCount = 0;
     let startTime = Date.now();
 
-    while(receipt.status !== 'complete' && errCount < 3 && (Date.now() - startTime < 60 * 1000)) {
+    while(receipt.status !== 'success' && errCount < 3 && (Date.now() - startTime < 60 * 1000)) {
         await sleep(500);
         receipt = await fetch('/retrieve-receipt/' + id).then(res => res.json()).catch(_ => null);
         if(!receipt || receipt.errorMessage) {
@@ -21,12 +21,13 @@ async function pingRetrievalEndpoint(id) {
         else progressText.innerText = "Complete!";
     }
 
-    if(receipt.status !== 'complete') {
+    if(receipt.status !== 'success') {
         window.location.href = "/error.html";
         throw new Error(receipt.errorMessage);
     }
     
-    displaySuccessScreen(receipt);
+    window.localStorage.setItem("receipt" + id, JSON.stringify(receipt));
+    window.location.href = "/output.html";
 }
 
 window.onload = () => {
