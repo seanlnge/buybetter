@@ -4,24 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyBetter - Find Better Alternatives</title>
+    <link rel="icon" href="public/media/buybetter.ico">
     <link rel="stylesheet" href="public/global.css">
     <link rel="stylesheet" href="public/index/style.css">
 </head>
 <body>
+    <canvas id="canvas"></canvas>
+    <nav class="navigation">
+        <a href="/"><img src="public/media/buybetter.ico" alt="logo" /></a>
+        <div>
+            <button onclick="location.href='/receipts.html'">View All</button>
+            <button class="newreceipt" onclick="location.href='/receipts.html'">New Receipt</button>
+        </div>
+    </nav>
     <header>
         <h1>BuyBetter</h1>
         <p>Your smarter way to spend - Analyze your receipts with our AI!</p>
+        <button onclick="window.location.href='receipts.html'" class="cta-button">Check Your Receipt</button>
     </header>
-    
-    <main>
-        <div class="hero-section">
-            <img src="public/index/receipts.jpg" alt="Receipts" class="hero-image">
-            <button onclick="window.location.href='receipts.html'" class="cta-button">See and Add Your Receipts</button>
-        </div>
-    </main>
+
+    <div class="content">
+        <h3>What is BuyBetter?</h3>
+        <p>Fix your finances in a breeze with BuyBetter. Drop your receipt in and find easy alternatives to save money.</p>
+    </div>
     
     <footer>
         <p>&copy; 2024 BuyBetter - Empowering smarter financial decisions</p>
     </footer>
+    <script src="public/renderspice.js"></script> <!-- framework i made in 8th grade !!! -->
+    <script src="public/index/script.js"></script>
 </body>
 </html>

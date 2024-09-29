@@ -26,6 +26,7 @@ async function pingRetrievalEndpoint(id) {
         throw new Error(receipt.errorMessage);
     }
     
+    receipt.image = window.localStorage.getItem("image") ?? "../media/buybetter.png";
     window.localStorage.setItem("receipt" + id, JSON.stringify(receipt));
 
     const receiptIds = JSON.parse(window.localStorage.getItem("receiptIds") ?? JSON.stringify({ ids: [] }));

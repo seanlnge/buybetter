@@ -9,9 +9,11 @@ body {
 }
 
 header {
-    background-color: #003366; /* Dark blue */
+    background-color: #00497c88; /* Dark blue */
     color: white;
     padding: 20px;
+    padding-top: 200px;
+    padding-bottom: 180px;
     display: flex;
     justify-content: flex-start; /* Align items to the left */
     align-items: center; /* Center vertically */
@@ -32,11 +34,15 @@ h1 {
 main {
     display: flex;
     flex-direction: column;
+    background: rgb(207, 255, 228);
+    border-top: 4px solid #000;
     align-items: center;
     padding: 20px;
     width: 100%; /* Full width */
-    max-width: 800px;
-    margin: 0 auto; /* Center the main content */
+    margin: auto; /* Center the main content */
+    padding: 40px;
+    color: black;
+    height: auto;
 }
 
 .hero-section {
@@ -70,21 +76,35 @@ main {
     transform: scale(1.05); /* Slightly grow the button on hover */
 }
 
-.upload-section, .preview-section, .results-section {
+.upload-section, .preview-section {
     margin: 20px 0;
-    width: 100%;
-    background-color: #222; /* Dark background for sections */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    gap: 40px;
+    background-color: #2224;/* Dark background for sections */
     padding: 20px;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .upload-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background: rgba(84, 84, 84, 0.533);
+    border: 1px solid #525252;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 0 2px black;
+}
+.upload-label:hover {
+    cursor: pointer;
+    background: rgba(187, 187, 187, 0.667);
+    transition-duration: 0.5s;
 }
 
 input[type="file"] {
@@ -128,10 +148,6 @@ input[type="file"] {
     transform: scale(1.05); /* Slightly grow the button on hover */
 }
 
-#preview-container {
-    display: none;
-}
-
 #receipt-preview {
     max-width: 100%;
     max-height: 400px;
@@ -140,33 +156,19 @@ input[type="file"] {
     border-radius: 4px;
 }
 
-footer {
-    background-color: #003366; /* Dark blue */
-    color: white;
-    text-align: center;
-    padding: 10px;
+.prevreceipts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.prevreceipts > * {
+    height: 350px;
     width: 100%;
-    position: relative; /* Changed to relative */
-    bottom: 0;
+    object-fit: cover;
 }
-
-/* Loading and Error Styles */
-.loading-screen, .error-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: black; /* Black background for loading screen */
-    color: white; /* White text for contrast */
-}
-
-.loading-gif {
-    width: 100px; /* Adjust size of loading gif */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 20px; /* Space between gif and text */
-}
-
-.error-screen {
-    text-align: center;
+.prevreceipts > *:hover {
+    cursor: pointer;
+    box-shadow: 0 0 4px black;
+    transition-duration: 0.5s;
 }

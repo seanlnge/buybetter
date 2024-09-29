@@ -8,27 +8,30 @@
     <link rel="stylesheet" href="public/receipts/style.css">
 </head>
 <body>
+    <canvas id="canvas"></canvas>
+    <nav class="navigation">
+        <a href="/"><img src="public/media/buybetter.ico" alt="logo" /></a>
+        <div>
+            <button onclick="location.href='/receipts.html'">View All</button>
+            <button class="newreceipt" onclick="location.href='/receipts.html'">New Receipt</button>
+        </div>
+    </nav>
     <header>
-        <a href="index.html" class="logo">BuyBetter</a> <!-- Logo link -->
         <h1>Your Receipts</h1>
-        <p>Upload new receipts or manage existing ones.</p>
-    </header>
-    
-    <main>
+        <p>Upload new receipts or view existing ones.</p>
+        
         <div class="upload-section">
             <label for="receipt-upload" class="upload-label">Upload Your Receipt</label>
             <input type="file" id="receipt-upload" accept="image/*" onchange="handleFileUpload(event)" class="styled-file">
             <button id="analyze-btn" onclick="analyzeReceipt()">Analyze</button>
         </div>
-        
-        <div id="preview-container" class="preview-section" style="display: none;">
-            <h2>Receipt Preview</h2>
-            <img id="receipt-preview" alt="Your Receipt will be displayed here">
-        </div>
-        
+        <img id="receipt-preview" alt="Your Receipt will be displayed here" style="display: none">
+    </header>
+    
+    <main>
         <div id="results-container" class="results-section">
-            <h2>Alternatives</h2>
-            <p id="results-text">Upload a receipt to see better alternatives for your purchases!</p>
+            <h2>Previous Receipts</h2>
+            <div class="prevreceipts"></div>
         </div>
     </main>
     
@@ -36,6 +39,7 @@
         <p>&copy; 2024 BuyBetter - Empowering smarter financial decisions</p>
     </footer>
 
+    <script src="public/renderspice.js"></script> <!-- framework i made in 8th grade !!! -->
     <script src="public/receipts/script.js"></script>
 </body>
 </html>

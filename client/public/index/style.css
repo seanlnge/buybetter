@@ -1,28 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 body {
-    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: black; /* Black background */
-    color: white; /* Default text color */
+    color: white;
+    overflow-x: hidden;
 }
 
+
 header {
-    background-color: #003366; /* Dark blue */
-    color: white;
+    background-image: url("../media/receipts.jpg");
+    background-size:cover;
+    width: 60vw;
+    margin: calc(10vh + 90px) auto 12vh;
+    color: black;
     padding: 20px;
+    height: 50vh;
     display: flex;
-    justify-content: flex-start; /* Align items to the left */
-    align-items: center; /* Center vertically */
-    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgb(139, 139, 139);
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgb(255, 255, 255);
+}
+header h1 {
+    font-size: 3.5em;
+    letter-spacing: -0.05em;
+    font-weight: 900;
+}
+header p {
+    font-weight: 600;
+    font-size: 1.15em;
+    text-align: center;
+}
+
+.content {
+    width: 100vw;
+    height: 200px;
+    padding: 40px;
+    padding-top: 80px;
+    text-align: center;
+    color: black;
+    background: white;
+    border-top: 4px solid rgb(130, 255, 215);
 }
 
 .logo {
     color: white;
     text-decoration: none;
-    font-size: 24px; /* Logo size */
-    margin-bottom: 10px; /* Space below the logo */
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -54,9 +83,10 @@ main {
 }
 
 .cta-button {
-    background-color: #4CAF50; /* Money-colored green */
-    color: white;
-    border: none;
+    background-color: #4CAF5088;/* Money-colored green */
+    color: black;
+    font-weight: 600;
+    border: 4px solid #4CAF50;
     padding: 15px 35px; /* Increased padding */
     border-radius: 30px; /* Round button */
     cursor: pointer;
@@ -138,35 +168,4 @@ input[type="file"] {
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
-}
-
-footer {
-    background-color: #003366; /* Dark blue */
-    color: white;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    position: relative; /* Changed to relative */
-    bottom: 0;
-}
-
-/* Loading and Error Styles */
-.loading-screen, .error-screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: black; /* Black background for loading screen */
-    color: white; /* White text for contrast */
-}
-
-.loading-gif {
-    width: 100px; /* Adjust size of loading gif */
-    height: auto; /* Maintain aspect ratio */
-    margin-bottom: 20px; /* Space between gif and text */
-}
-
-.error-screen {
-    text-align: center;
 }
