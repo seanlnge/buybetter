@@ -12,21 +12,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetGoogleQuery = GetGoogleQuery;
 exports.GetAmazonQuery = GetAmazonQuery;
 exports.GetMapsQuery = GetMapsQuery;
-const google_sr_1 = require("google-sr");
+//import { search } from 'google-sr';
 const google_maps_services_js_1 = require("@googlemaps/google-maps-services-js");
 const querystring_1 = require("querystring");
+const googleapis_1 = require("googleapis");
 require("dotenv/config");
 // @ts-ignore
 const ipapi_tools_1 = require("ipapi-tools");
 const client = new google_maps_services_js_1.Client({});
+const search = googleapis_1.google.customsearch('v1');
 function GetGoogleQuery(query) {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c;
-        const response = yield (0, google_sr_1.search)({ query });
-        const link = (_a = response[0].link) !== null && _a !== void 0 ? _a : 'https://google.com/search?q=' + (0, querystring_1.escape)(query);
-        const title = (_b = response[0].title) !== null && _b !== void 0 ? _b : 'Google';
-        const description = (_c = response[0].description) !== null && _c !== void 0 ? _c : 'Google search for: ' + query;
-        return { link, title, description };
+        var _a;
+        const response = yield search.cse.list({
+            q: query,
+            key: process.env.GOOGLE_SEARCH_API_KEY,
+            cx: process.env.GOOGLE_SEARCH_CX_KEY,
+            num: 4
+        });
+        const resp = (_a = response.data.items) === null || _a === void 0 ? void 0 : _a.find(x => { var _a; return !((_a = x.link) === null || _a === void 0 ? void 0 : _a.includes('google.com/maps')); });
+        return {
+            link: resp.link || 'https://google.com/search?q=' + (0, querystring_1.escape)(query),
+            title: resp.title || query,
+            description: resp.snippet || 'Google search for: ' + query
+        };
     });
 }
 function GetAmazonQuery(query) {

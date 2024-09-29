@@ -1,21 +1,28 @@
-import { search } from 'google-sr';
+//import { search } from 'google-sr';
 import { Client } from '@googlemaps/google-maps-services-js';
 import { escape } from 'querystring';
+import { google } from 'googleapis';
 import 'dotenv/config';
 
 // @ts-ignore
 import { getIpLocation } from 'ipapi-tools';
 
 const client = new Client({});
+const search = google.customsearch('v1');
 
 export async function GetGoogleQuery(query: string): Promise<Record<string, string>> {
-    const response = await search({ query });
-    const resp = response.find(x => !x.link?.includes('google.com/maps'))!;
+    const response = await search.cse.list({
+        q: query,
+        key: process.env.GOOGLE_SEARCH_API_KEY,
+        cx: process.env.GOOGLE_SEARCH_CX_KEY,
+        num: 4
+    });
+    const resp = response.data.items?.find(x => !x.link?.includes('google.com/maps'))!;
 
     return {
         link: resp.link || 'https://google.com/search?q=' + escape(query),
         title: resp.title || query,
-        description: resp.description || 'Google search for: ' + query
+        description: resp.snippet || 'Google search for: ' + query
     }
 }
 
